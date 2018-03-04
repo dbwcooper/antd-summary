@@ -44,6 +44,7 @@ const Button = styled.button`
   /* Color the border and text with theme.main */
   color: ${props => props.theme.main};
   border: 2px solid ${props => props.theme.main};
+   /* 使用id */
   &#primary {
       color: blue;
   }
