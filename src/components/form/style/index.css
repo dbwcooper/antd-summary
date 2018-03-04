@@ -1,7 +1,0 @@
-.myForm {
-  width: 500px;
-  height: 500px;
-}
-.myForm :global .ant-form-item {
-  background: orange;
-}

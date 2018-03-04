@@ -1,8 +1,7 @@
 import React from 'react';
 import { Form, Icon, Input, Button, Checkbox } from 'antd';
-import CSSModules from 'react-css-modules';
 import styles from './style/index.less';
-
+// import './style'
 const FormItem = Form.Item;
 class NormalLoginForm extends React.Component {
   handleSubmit = (e) => {
@@ -13,10 +12,24 @@ class NormalLoginForm extends React.Component {
       }
     });
   }
+  // reset fields
+  onReset = () => {
+    this.props.form.resetFields();
+  }
+  // set one field
+  onSetField = () => {
+    this.props.form.setFieldsValue({ userName: 'cooper'});
+  }
+  onValidateFields = (e) => {
+    this.props.form.validateFields(['password'], (err) => {
+      if (!err) {
+        console.log('Received values of form: ');
+      }
+    });
+  }
   render() {
     console.log(styles);
 
- 
     // 解决方式一 在less文件中加上global
     // `:local` 与 `:global` 的区别是 CSS Modules 只会对 `:local` 块的 class 样式做 `localIdentName` 规则处理，`:global` 的样式编译后不变。
 
@@ -24,7 +37,6 @@ class NormalLoginForm extends React.Component {
     const { getFieldDecorator } = this.props.form;
     return (
       // <Form onSubmit={this.handleSubmit} className="myForm">
-      // <div styleName="myForm">
       <Form onSubmit={this.handleSubmit} className={styles.myForm} >
         <FormItem>
           {getFieldDecorator('userName', {
@@ -52,13 +64,15 @@ class NormalLoginForm extends React.Component {
             Log in
           </Button>
           Or <a href="">register now!</a>
+          <Button onClick={this.onReset}> Reset</Button>
+          <Button onClick={this.onSetField}> setField</Button>
+          <Button onClick={this.onValidateFields}> get ValidateField status</Button>
         </FormItem>
       </Form>
-      // </div>
     );
   }
 }
 
-const myForm = Form.create()(CSSModules(NormalLoginForm, styles));
+const myForm = Form.create()(NormalLoginForm);
 export default myForm;
 
