@@ -1,9 +1,9 @@
 import React from 'react';
-import cssmodule from '../components/react-css-module';
+import Cssmodule from '../components/react-css-module';
 
 function myForm() {
     return (
-        <cssmodule />
+        <Cssmodule />
     );
 }
 
