@@ -28,4 +28,14 @@ antd 使用的一些问题demo
     如果碰到这类情况的url 参数错误导致的路由错误  需要视情况而定   
     总的来说当前页面需要设置一个flag 在flag = true 的情况下显示导入的404组件 其他情况显示
     
-3. debounce 与Search等组件使用需要注意的问题  
+3. debounce 与Search等组件使用需要注意的问题   
+如果需要绑定的函数是react的合成事件(event ) 例如 
+``` onClick``` ， react 为了性能优化，将这类事件绑定在一个合成事件对象上，此对象在被调用之后会被立即释放(保留引用,但是上面的属性将全部被注销)   
+这意味着无法异步获取合成事件对象, 即是说类似 ```event.target.value``` 将失效。   
+解决方案一:   
+ -> 
+ 这时需要使用``` event.persist()``` 保留对该事件的引用，并不注销此事件.  
+-> (只需要e.target.value属性时)  
+``` <Search onChange={ e => { this.onSearchChange(e.target.value)}} ```   
+ ``` this.onSearchChange = debounce(this.onSearchChange , 200)```;
+
