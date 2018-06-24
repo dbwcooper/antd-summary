@@ -14,7 +14,6 @@ export default {
   },
   reducers: {
     r_save(state, { euTreeData }) {
-      console.log('state, euTreeData', state, euTreeData);
       return { ...state, treeData: euTreeData.data.children };
     },
   },

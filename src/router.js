@@ -9,6 +9,7 @@ import LifeCycle from './routes/lifecycle';
 import Portals from './routes/portals';
 import ErrorCatch from './routes/errorcatch';
 import Tree from './routes/tree';
+import Immutable from "./routes/immutable";
 function RouterConfig({ history }) {
   return (
     <Router history={history}>
@@ -21,6 +22,7 @@ function RouterConfig({ history }) {
         <Route path="/portals" exact component={Portals} />
         <Route path="/error" exact component={ErrorCatch} />
         <Route path="/tree" exact component={Tree} />
+        <Route path="/immutable" exact component={Immutable} />
         {/* 路由未匹配时显示/ 未改变路由*/}
         <Route path="/*" exact component={Page404} />
       </Switch>

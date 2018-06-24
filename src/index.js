@@ -10,6 +10,7 @@ const app = dva();
 // 3. Model
 app.model(require('./models/index').default);
 app.model(require('./models/tree').default);
+app.model(require('./models/Immutable').default);
 // 4. Router
 app.router(require('./router').default);
 
