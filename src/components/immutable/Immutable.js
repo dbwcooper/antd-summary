@@ -9,7 +9,8 @@ const children = [];
 class Immutable extends Component {
   constructor(props, context) {
     super(props, context);
-    const { immutable: { TreeData } } = props;
+    const { immutable } = props;
+    const TreeData = immutable.get('TreeData')
     for (let i = 0; i < TreeData.length; i++) {
       let value = TreeData[i].eu.euName + ' (' + TreeData[i].eu.size +')';
       children.push(<Option key={TreeData[i].eu.euNo}> {value} </Option>);
@@ -17,33 +18,22 @@ class Immutable extends Component {
   }
   tabChange = (activeKey) => {
     const { dispatch } = this.props;
-    let payload = { activeKey };
-    dispatch({ type: 'immutable/r_setState', payload})
-  }
-  handleChange = (values) => {
-    console.log(`Selected: ${values}`);
+    dispatch({ type: 'immutable/r_setState', activeKey})
   }
   render() {
-    const { immutable: { TreeData, activeKey }, dispatch } = this.props;
+    const { immutable, dispatch } = this.props;
+    const activeKey = immutable.get('activeKey');
+    const TreeData = immutable.get('TreeData');
     return (
       <div className={styles.page}>
-        <h3>选择用于显示的列表</h3>
-        <Select
-            mode="multiple"
-            placeholder="请选择"
-            onChange={this.handleChange}
-            style={{ width: '100%' }}
-        >
-        {children}
-        </Select>
         <Tabs
           activeKey={activeKey}
           onChange={this.tabChange}
           tabPosition="top"
         >
-        {TreeData.map(({ eu: { euName, size, euNo}, children}) =>
-          <TabPane tab={euName + ' (' + size +')'} key={euNo}>
-            <Table dataSource={children} dispatch={dispatch}  />
+        {TreeData.map((item) =>
+          <TabPane tab={item.getIn(['eu', 'euName']) + ' (' + item.getIn(['eu', 'size']) +')'} key={item.getIn(['eu', 'euNo'])}>
+            <Table dataSource={item.get('children').toJS()} dispatch={dispatch}  />
           </TabPane>)
         }
         </Tabs>

@@ -10,6 +10,7 @@
     "antd": "^3.2.3",
     "babel-plugin-import": "^1.6.5",
     "dva": "^2.1.0",
+    "immutable": "^3.8.2",
     "lodash.debounce": "^4.0.8",
     "react": "^16.2.0",
     "react-css-modules": "^4.7.1",

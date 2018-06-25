@@ -1,4 +1,5 @@
 
+import { fromJS } from 'immutable';
 import euTreeData from '../assets/eutree.json';
 
 let Store = {
@@ -7,4 +8,4 @@ let Store = {
     activeKey: '-1001'
 }
 
-export default Store;
+export default fromJS(Store);

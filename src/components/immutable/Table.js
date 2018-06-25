@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
-import { Table, Button, Input, Select, Popconfirm } from 'antd';
+import { Table, Button, Select, Popconfirm } from 'antd';
 import EditCell from './EditCell';
-import { CLIENT_RENEG_LIMIT } from 'tls';
 const Option = Select.Option;
 
 class TableCustomize extends Component {

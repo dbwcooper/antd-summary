@@ -9,6 +9,6 @@ function Route(props) {
 }
 
 function MapStateToProps(state){
-    return { immutable: state.immutable }
+    return state
   }
   export default connect(MapStateToProps)(Route);
